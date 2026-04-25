@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Coffee Products | Susha Coffee</title>
     <style>
-        /* --- CSS STYLES --- */
+        /* --- CSS VARIABLES --- */
         :root {
-            --bg-cream: #f2eee3;    /* The background color from your image */
+            --bg-cream: #f2eee3;
             --card-white: #ffffff;
-            --accent-gold: #c99a4c; /* The gold/tan color for titles */
-            --text-dark: #4a2c2a;   /* Deep coffee brown */
+            --accent-gold: #c99a4c;
+            --text-dark: #4a2c2a;
             --text-muted: #666666;
+            --nav-height: 80px;
         }
 
+        /* --- BASE STYLES --- */
         body {
             background-color: var(--bg-cream);
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -21,101 +23,105 @@
             padding: 0;
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        /* NAVBAR */
-.navbar {
-    background-color: var(--cream);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 6%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-radius: 0%;
-    border: 1px solid black;
-}
 
-.nav-logo {
-    display: flex;
-}
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: var(--bg-cream);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            height: var(--nav-height);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
 
-.nav-logo h2 {
-    margin-top: 20px;
-    margin-left: 5px;
-    color: var(--coffee);
-}
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
 
+        .nav-logo h2 {
+            margin: 0 0 0 10px;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+        }
 
-.nav-logo img {
-    width: 80px;
-    height: 75px;
-    margin: 8px;
+        .nav-logo img {
+            width: 60px;
+            height: auto;
+        }
 
-}
+        /* Desktop Menu */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            transition: 0.4s ease-in-out;
+        }
 
-/* Desktop menu */
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 28px;
-}
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
 
-.nav-links li a {
-    text-decoration: none;
-    color: var(--coffee);
-    font-weight: 500;
-    transition: 0.3s;
-}
+        .nav-links li a:hover {
+            color: var(--accent-gold);
+        }
 
-.nav-links li a:hover {
-    color: var(--gold);
-}
+        .btn-quote {
+            padding: 8px 20px;
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 25px;
+            background: transparent;
+        }
 
-/* CTA button */
-.btn-quote {
-    padding: 8px 16px;
-    border: 1px solid var(--gold);
-    border-radius: 20px;
-}
+        /* Hamburger Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
 
-/* Hamburger */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
+        .menu-toggle span {
+            background: var(--text-dark);
+            height: 3px;
+            width: 25px;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s ease;
+        }
 
-.menu-toggle span {
-    background: black;
-    height: 3px;
-    width: 25px;
-    margin: 4px 0;
-    border-radius: 2px;
-    transition: 0.3s ease;
-    transform-origin: center;
-}
+        /* --- MAIN CONTENT --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
         }
 
-        /* Header Section */
         .header-section {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .header-section h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .header-section p {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
             color: var(--text-muted);
@@ -125,14 +131,17 @@
         .filter-controls {
             text-align: center;
             margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .filter-btn {
             background: transparent;
             border: 1.5px solid var(--accent-gold);
             color: var(--text-dark);
-            padding: 10px 25px;
-            margin: 5px;
+            padding: 10px 22px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
@@ -147,33 +156,31 @@
         /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px ,1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        /* Card Design - Matching your image */
         .product-card {
             background-color: var(--card-white);
             border-radius: 25px;
-            padding: 35px;
+            padding: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.03);
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.02);
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.02);
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
         }
 
         .card-title {
             color: var(--accent-gold);
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             margin-top: 0;
-            line-height: 1.3;
         }
 
         .card-description {
@@ -184,8 +191,8 @@
         }
 
         .card-meta {
-            font-size: 0.85rem;
-            font-weight: bold;
+            font-size: 0.8rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-gold);
@@ -193,26 +200,75 @@
             padding-top: 15px;
         }
 
-        /* Animation for Filtering */
         .hidden {
             display: none;
         }
 
-        @media (max-width: 768px) {
-            .header-section h1 { font-size: 2.2rem; }
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--card-white);
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Hamburger to X Animation */
+            .menu-toggle.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            .menu-toggle.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-section h1 { font-size: 1.8rem; }
+            
+            .filter-controls {
+                justify-content: flex-start;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding: 0 10px 15px 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr; /* Single column on phones */
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
     <nav class="navbar">
         <div class="nav-logo">
             <img src="Assets/Images/logo2-removebg-preview.png" alt="Susha Coffee Logo">
             <h2>Susha Coffee</h2>
         </div>
 
-        <!-- Hamburger -->
         <div class="menu-toggle" id="menuToggle">
             <span></span>
             <span></span>
@@ -226,14 +282,12 @@
             <li><a href="about.html">About Us</a></li>
             <li><a href="index.html#contact-form" class="btn-quote">Request Quote</a></li>
         </ul>
-
     </nav>
-
 
     <div class="container">
         <header class="header-section">
             <h1>Our Coffee Products</h1>
-            <p>Discover the rich diversity of our coffee offerings, each crafted to perfection and sourced from the finest estates in Karnataka.</p>
+            <p>Discover the rich diversity of our coffee offerings, sourced from the finest estates in Karnataka.</p>
         </header>
 
         <div class="filter-controls">
@@ -244,77 +298,16 @@
         </div>
 
         <div class="product-grid" id="productGrid">
-            
             <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Strict Grading (ICO Standards)</h3>
-                <p class="card-description">Every coffee batch is carefully checked and graded as per International Coffee Organization standards, so you receive beans that meet global quality expectations.</p>
+                <h3 class="card-title">Arabica Plantation AA</h3>
+                <p class="card-description">The highest grade of washed Indian Arabica, featuring the largest, most uniform beans sorted for superior quality and a clean, citrusy aroma.</p>
                 <div class="card-meta">Type: Premium Arabica</div>
-            </div>
-            
-            <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Arabica Plantation B</h3>
-                <p class="card-description">Arabica Plantation B is a high-quality Indian coffee grade consisting of slightly smaller, well-sorted beans. It offers a consistent roast with the signature mild acidity and sweet aroma typical of premium Arabica.</p>
-                <div class="card-meta">Type: Premium Arabica</div>
-            </div>
-
-            <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Arabica Plantation PB Bold</h3>
-                <p class="card-description">**Arabica Plantation PB Bold** consists of rare, single-seed "Peaberry" beans known for their high density and concentrated flavor. These beans offer a uniquely intense aroma and a bright, winey acidity that stands out in premium blends.</p>
-                <div class="card-meta">Type: Premium Arabica</div>
-            </div>
-
-            <div class="product-card" data-category="blends">
-                <h3 class="card-title">Moisture Testing & Density Control</h3>
-                <p class="card-description">We test moisture and bean density to make sure your coffee stays fresh, roasts evenly, and travels safely from origin to destination.</p>
-                <div class="card-meta">Type: House Blend</div>
-            </div>
-
-            <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Batch Traceability Control</h3>
-                <p class="card-description">You can trace each batch back to its source. We maintain clear records of origin, harvest, and processing so you always know where your coffee comes from.</p>
-                <div class="card-meta">Type: Single Origin Robusta</div>
             </div>
 
             <div class="product-card" data-category="robusta">
                 <h3 class="card-title">Robusta Kaapi Royale</h3>
-                <p class="card-description">**Robusta Kaapi Royale** is India’s highest grade of Robusta, consisting of large, uniform beans that are completely free of defects. It delivers a clean, mellow flavor with a smooth crema and none of the typical Robusta bitterness.</p>
+                <p class="card-description">India’s highest grade of Robusta. Delivers a clean, mellow flavor with a smooth crema and none of the typical Robusta bitterness.</p>
                 <div class="card-meta">Type: Single Origin Robusta</div>
-            </div>
-
-            <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Robusta Plantation PB</h3>
-                <p class="card-description">**Robusta Plantation PB** is a premium Peaberry grade consisting of dense, round single-seed beans. It is highly valued for its intense body, rich crema, and a punchy, chocolatey flavor profile that adds depth to any blend.</p>
-                <div class="card-meta">Type: Single Origin Robusta</div>
-            </div>
-
-            <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Export Documentation Compliance</h3>
-                <p class="card-description">We take care of all export paperwork and compliance requirements, ensuring a smooth, hassle-free shipping and customs process.</p>
-                <div class="card-meta">Type: Export Grade</div>
-            </div>
-
-            <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Arabica Cherry PB Bold</h3>
-                <p class="card-description">**Arabica Cherry PB Bold** consists of unwashed, sun-dried Peaberry beans that are specifically sorted for their larger, "bold" size. These rare single-seed beans offer a heavy body and a rustic, fruity sweetness unique to the natural drying process.</p>
-                <div class="card-meta">Type: Premium Arabica</div>
-            </div>
-
-            <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Robusta Parchment A</h3>
-                <p class="card-description">**Robusta Parchment A** is a premium washed grade featuring large, uniform beans. It delivers a clean, soft flavor with a heavy body and subtle chocolatey undertones, perfect for high-quality espresso.</p>
-                <div class="card-meta">Type: Specialty Robusta</div>
-            </div>
-
-            <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Robusta Plantation AA</h3>
-                <p class="card-description">**Robusta Plantation AA** represents the top-tier grade of washed Indian Robusta, specifically sorted for its large and consistent bean size. It is celebrated for its clean, woody notes, heavy body, and excellent crema, making it a favorite for premium espresso blends.</p>
-                <div class="card-meta">Type: Specialty Robusta</div>
-            </div>
-
-            <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Arabica Cherry A</h3>
-                <p class="card-description">**Arabica Cherry A** is a premium sun-dried, unwashed bean known for its large size, heavy body, and rustic fruity sweetness.</p>
-                <div class="card-meta">Type: Premium Arabica</div>
             </div>
 
             <div class="product-card" data-category="blends">
@@ -324,53 +317,43 @@
             </div>
 
             <div class="product-card" data-category="arabica">
-                <h3 class="card-title">Arabica Plantation AA</h3>
-                <p class="card-description">**Arabica Plantation AA** is the highest grade of washed Indian Arabica, featuring the largest, most uniform beans sorted for superior quality and a clean, citrusy aroma.</p>
+                <h3 class="card-title">Arabica Plantation PB Bold</h3>
+                <p class="card-description">Rare, single-seed "Peaberry" beans known for high density and concentrated flavor with uniquely intense aroma.</p>
                 <div class="card-meta">Type: Premium Arabica</div>
             </div>
 
             <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Robusta Parchment AB</h3>
-                <p class="card-description">**Robusta Parchment AB** is a high-grade washed coffee consisting of medium-sized, well-sorted beans that provide a clean flavor and rich crema.</p>
+                <h3 class="card-title">Robusta Plantation AA</h3>
+                <p class="card-description">Top-tier grade of washed Indian Robusta. Celebrated for clean woody notes and excellent crema, perfect for espresso blends.</p>
                 <div class="card-meta">Type: Specialty Robusta</div>
             </div>
 
-            <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Robusta Cherry A</h3>
-                <p class="card-description">**Robusta Cherry A** is a premium sun-dried, unwashed grade featuring large beans that deliver a bold, punchy flavor with a thick crema and earthy undertones.</p>
-                <div class="card-meta">Type: Specialty Robusta</div>
+            <div class="product-card" data-category="arabica">
+                <h3 class="card-title">Arabica Cherry A</h3>
+                <p class="card-description">Premium sun-dried, unwashed bean known for its large size, heavy body, and rustic fruity sweetness.</p>
+                <div class="card-meta">Type: Premium Arabica</div>
             </div>
-
-            <div class="product-card" data-category="robusta">
-                <h3 class="card-title">Robusta Parchment PB Bold</h3>
-                <p class="card-description">**Robusta Parchment PB Bold** is a premium washed grade featuring large, dense Peaberry beans. These rare single-seed beans deliver a powerful, concentrated flavor with a remarkably thick crema and smooth finish.</p>
-                <div class="card-meta">Type: Specialty Robusta</div>
-            </div>
-
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Filter Logic
             const buttons = document.querySelectorAll('.filter-btn');
             const cards = document.querySelectorAll('.product-card');
 
             buttons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // 1. Update active button UI
                     buttons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
 
-                    // 2. Get filter value
                     const filterValue = button.getAttribute('data-filter');
 
-                    // 3. Filter the cards
                     cards.forEach(card => {
                         const cardCategory = card.getAttribute('data-category');
                         
                         if (filterValue === 'all' || filterValue === cardCategory) {
                             card.classList.remove('hidden');
-                            // Small delay for fade-in effect
                             setTimeout(() => {
                                 card.style.opacity = '1';
                                 card.style.transform = 'scale(1)';
@@ -378,12 +361,28 @@
                         } else {
                             card.style.opacity = '0';
                             card.style.transform = 'scale(0.95)';
-                            // Wait for transition before hiding
                             setTimeout(() => {
                                 card.classList.add('hidden');
                             }, 300);
                         }
                     });
+                });
+            });
+
+            // Mobile Menu Logic
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('open');
+            });
+
+            // Close menu on link click
+            document.querySelectorAll('.nav-links li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('open');
                 });
             });
         });
